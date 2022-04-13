@@ -4,6 +4,12 @@
   "description": "An example project built using Nuxt",
   "author": "BenShelton <bensheltonjones@gmail.com>",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "127.0.0.1",
+      "port": "3000"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
