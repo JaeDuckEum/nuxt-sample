@@ -1,8 +1,9 @@
 module.exports = {
 
   // toggle SPA mode
-  // mode: 'spa',
-  
+  //mode: 'spa',
+  mode: 'universal',
+
   // create extra file for netlify
   generate: { fallback: true },
   /*

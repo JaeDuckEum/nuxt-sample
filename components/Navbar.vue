@@ -32,7 +32,9 @@ export default {
         { to: '/products/view', name: 'Vuex Store Example' },
         { to: '/admin', name: 'Admin Layout' },
         { to: '/plugin', name: 'Vue-Notifications Plugin' },
-        { to: '/products/view-async', name: 'Async Fetch Example' }
+        { to: '/products/view-async', name: 'Async Fetch Example' },
+        { to: '', name: 'EJD' },
+        { to: '/ejd/todo', name: 'EJD Vuex Store Example' }
       ]
     }
   },
