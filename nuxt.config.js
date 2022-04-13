@@ -20,7 +20,12 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  plugins: ['~/plugins/vue-notifications'],
+  plugins: [
+    {
+      src : '~/plugins/vue-notifications',
+      //src : '~/plugins/persistedState.js',
+    }
+  ],
   /*
   ** Customize the progress bar color
   */
