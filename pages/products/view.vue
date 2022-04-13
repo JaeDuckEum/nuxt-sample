@@ -14,10 +14,10 @@ import { mapState } from 'vuex'
 export default {
   beforeCreate () {
     // reset store to demonstrate the delay
-    this.$store.commit('product/reset')
+    //this.$store.commit('product/reset')
   },
   created () {
-    this.$store.dispatch('product/load')
+    //this.$store.dispatch('product/load')
   },
   computed: {
     ...mapState(['product'])
