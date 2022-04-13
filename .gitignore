@@ -12,3 +12,6 @@ dist
 
 # Netlify Setting
 .netlify
+
+# package lock
+package-lock.json
