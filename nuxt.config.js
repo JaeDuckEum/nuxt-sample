@@ -21,10 +21,8 @@ module.exports = {
     ]
   },
   plugins: [
-    {
-      src : '~/plugins/vue-notifications',
-      //src : '~/plugins/persistedState.js',
-    }
+    { src : '~/plugins/vue-notifications' },
+    { src : '~/plugins/persistedState.js' },
   ],
   /*
   ** Customize the progress bar color
