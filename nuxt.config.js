@@ -26,6 +26,28 @@ module.exports = {
     { src : '~/plugins/persistedState.js' },
   ],
   /*
+  ** Module Config
+  */
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  axios: {
+    baseURL: 'http://localhost:8888',
+    proxy: false,
+    retry: {
+      retries: 4, // 최대 재전송 횟수 4회
+      shouldResetTimeout: true, // 재전송 간 타임아웃을 리셋하기
+      retryDelay: (retry) => {
+        return retry * 100; // 재전송 횟수 * 0.1초만큼 재전송 시작 시간을 지연시키기
+      },
+      retryCondition: (error) => err.response.status === 429, // 서버 혼잡이 일어났을 경우에만 재전송하기
+    },
+    progress: false, // 로딩 바를 사용하지 않음
+  },
+  proxy : {
+    '/sample/api' : 'http://localhost:8888'
+  },
+  /*
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
