@@ -34,7 +34,9 @@ export default {
         { to: '/plugin', name: 'Vue-Notifications Plugin' },
         { to: '/products/view-async', name: 'Async Fetch Example' },
         { to: '', name: 'EJD' },
-        { to: '/ejd/todo', name: 'EJD Vuex Store Example' }
+        { to: '/ejd/todo', name: 'Vuex Store Example' },
+        { to: '/ejd/axios/sample-get', name: 'AXIOS GET Example' },
+        { to: '/ejd/axios/sample-post', name: 'AXIOS POST Example' },
       ]
     }
   },

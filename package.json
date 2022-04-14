@@ -19,6 +19,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
     "nuxt": "^1.0.0",
