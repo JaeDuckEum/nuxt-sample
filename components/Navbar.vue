@@ -37,6 +37,7 @@ export default {
         { to: '/ejd/todo', name: 'Vuex Store Example' },
         { to: '/ejd/axios/sample-get', name: 'AXIOS GET Example' },
         { to: '/ejd/axios/sample-post', name: 'AXIOS POST Example' },
+        { to: '/ejd/axios/sample-exception', name: 'AXIOS Exception Example' },
       ]
     }
   },

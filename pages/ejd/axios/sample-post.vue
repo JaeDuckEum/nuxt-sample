@@ -32,12 +32,25 @@ export default {
       console.log('getBoardList is start')
       let params = {};
       //params.searchDeleteYn = 'N'
-      const res = await this.$axios.$post('/sample/api/board/list', params)
+      await this.$axios.$post('/sample/api/board/list', params)
+        .then(res => {
+          console.log('res : ', res)
+          let result, errorMessage, data
+          if (res) {
+            result = res.result
+            errorMessage = res.errorMessage
+            data = res.data
+          }
+          console.log('result : ', result)
+          console.log('errorMessage : ', errorMessage)
+          console.log('data : ', data)
+          this.boardList = data
+        })
         .catch(e => {
           console.log('e : ', e)
         })
-      this.boardList = res.data
-      console.log('getBoardList is end : ', res)
+      //this.boardList = res.data
+      //console.log('getBoardList is end : ', res)
       console.log('this.boardList : ', this.boardList)
     }
   }
