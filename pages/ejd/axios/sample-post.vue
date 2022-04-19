@@ -36,21 +36,12 @@ export default {
         .then(res => {
           console.log('res : ', res)
           let result, errorMessage, data
-          if (res) {
-            result = res.result
-            errorMessage = res.errorMessage
-            data = res.data
-          }
-          console.log('result : ', result)
-          console.log('errorMessage : ', errorMessage)
-          console.log('data : ', data)
+          data = res.data
           this.boardList = data
         })
         .catch(e => {
           console.log('e : ', e)
         })
-      //this.boardList = res.data
-      //console.log('getBoardList is end : ', res)
       console.log('this.boardList : ', this.boardList)
     }
   }

@@ -7,11 +7,14 @@
 
 <script>
 import Navbar from '~/components/Navbar'
+//import loading from '~/components/LoadingBar'
 export default {
-  components: { Navbar }
+  components: {
+    Navbar,
+    //loading,
+  }
 }
 </script>
-
 
 <style>
 html {

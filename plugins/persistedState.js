@@ -5,7 +5,7 @@ import cookie from "cookie";
 
 export default ({ store, req }) => {
   createPersistedState({
-    paths: ["example"],
+    //paths: ["example"], // 주석 해제하면 작동안함.
     storage: { getItem: (key) => {
       // See https://nuxtjs.org/guide/plugins/#using-process-flags
       if (process.server) {
