@@ -20,10 +20,13 @@
         </option>
       </select>
       &nbsp;
-      <button @click.prevent="getException">Board List</button>
+      <button @click.prevent="exception">exception</button>
     </div>
     <p>Board List</p>
     <ul>
+      <li v-if="!boardList">
+        <p>조회 데이터가 없습니다.</p>
+      </li>
       <li
         v-for="board in boardList" :key="board.boardSeq"
       >
@@ -35,6 +38,7 @@
     </ul>
   </div>
 </template>
+
 <script>
 export default {
   name: "sample-exception",
@@ -42,6 +46,8 @@ export default {
     return {
       exceptionTypeList : [
         {"code": "", codeName: '== 전체 =='},
+        {"code": "BVEX", codeName: 'BoardViewException'},
+        {"code": "BLEX", codeName: 'BoardListException'},
         {"code": "EX", codeName: 'Exception'},
         {"code": "ADEX", codeName: 'AccessDeniedException'},
         {"code": "AUEX", codeName: 'AuthException'},
@@ -58,20 +64,58 @@ export default {
   },
   mounted() {
     console.log('mounted is start')
-    this.getException()
+    //this.exception()
     console.log('mounted is end')
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 100)
+    })
   },
   methods: {
-    getException() {
+    exception() {
+      this.boardList = null
       const exceptionType = this.exceptionType
-      if ( exceptionType === 'EX' || exceptionType === 'ADEX' ) {
-        this.getBoardListException();
+      console.log('exception_exceptionType : ', exceptionType)
+      if ( exceptionType === 'BVEX' || exceptionType === 'BLEX' ) {
+        console.log('this.getBoardExcepton() is start')
+        this.getBoardExcepton()
+      } else if ( exceptionType === 'EX' || exceptionType === 'ADEX' ) {
+        this.$axios.setLoading(false)
+        this.getException()
       } else if ( exceptionType === 'AUEX' ) {
-        this.getAuthException();
+        this.getAuthException()
+      } else {
+        console.log('this.getBoardList() is start')
+        this.getBoardList()
       }
     },
-    async getBoardListException() {
-      console.log('getBoardList is start')
+    async getBoardExcepton() {
+      this.$nuxt.$loading.start()
+      const exceptionType = this.exceptionType
+      const deleteYn = this.deleteYn
+
+      let sUrl = '/sample/api/board/exception'
+
+      let params = {};
+      params.exceptionType = exceptionType
+      params.searchDeleteYn = deleteYn
+      console.log('params : ', params)
+      await this.$axios.$post(sUrl, params)
+        .then(res => {
+          console.log('res : ', res)
+          const data = res.data
+          this.boardList = res.data
+          this.$nuxt.$loading.finish()
+        })
+        .catch(e => {
+          console.log('e : ', e)
+          this.$nuxt.$loading.finish()
+        })
+
+      console.log('getBoardList is end ')
+      console.log('this.boardList : ', this.boardList)
+    },
+    async getException() {
       const exceptionType = this.exceptionType
       const deleteYn = this.deleteYn
 
@@ -89,23 +133,8 @@ export default {
       await this.$axios.$post(sUrl, params)
         .then(res => {
           console.log('res : ', res)
-          let result, errorMessage, data
-          if (res) {
-            result = res.result
-            errorMessage = res.errorMessage
-            data = res.data
-          } else {
-            alert('에러입니다.')
-            return
-          }
-          if ( !data ) {
-            alert('에러입니다.')
-            return
-          }
-          console.log('result : ', result)
-          console.log('errorMessage : ', errorMessage)
-          console.log('data : ', data)
-          this.boardList = data
+          const data = res.data
+          this.boardList = res.data
         })
         .catch(e => {
           console.log('e : ', e)
@@ -115,8 +144,8 @@ export default {
       console.log('this.boardList : ', this.boardList)
     },
     async getAuthException() {
-      const username = ""
-      const password = ""
+      const username = "admin"
+      const password = "admin123"
 
       let params = {}
       params.username = username
@@ -125,28 +154,34 @@ export default {
       await this.$axios.$post('/sample/api/authenticate', params)
         .then(res => {
           console.log('res : ', res)
-          let result, errorMessage, data
-          if (res) {
-            result = res.result
-            errorMessage = res.errorMessage
-            data = res.data
-          } else {
-            alert('에러입니다.')
-            return
-          }
-          if ( !data ) {
-            alert('에러입니다.')
-            return
-          }
-          console.log('result : ', result)
-          console.log('errorMessage : ', errorMessage)
-          console.log('data : ', data)
-          this.boardList = data
+          const data = res.data
         })
         .catch(e => {
           console.log('e : ', e)
         })
-    }
+    },
+    async getBoardList() {
+      const exceptionType = this.exceptionType
+      const deleteYn = this.deleteYn
+
+      let params = {};
+      params.exceptionType = exceptionType
+      params.searchDeleteYn = deleteYn
+      console.log('params : ', params)
+
+      const sUrl = '/sample/api/board/list'
+
+      await this.$axios.$post(sUrl, params)
+        .then(res => {
+          console.log('res : ', res)
+          const data = res.data
+          this.boardList = res.data
+        })
+        .catch(e => {
+          console.log('e : ', e)
+        })
+      console.log('this.boardList : ', this.boardList)
+    },
   }
 }
 </script>

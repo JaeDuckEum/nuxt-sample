@@ -1,8 +1,8 @@
 module.exports = {
 
   // toggle SPA mode
-  //mode: 'spa',
-  mode: 'universal',
+  mode: 'spa',
+  //mode: 'universal',
 
   // create extra file for netlify
   generate: { fallback: true },
@@ -24,6 +24,7 @@ module.exports = {
   plugins: [
     { src : '~/plugins/vue-notifications' },
     { src : '~/plugins/persistedState.js' },
+    { src : '~/plugins/axios.js' },
   ],
   /*
   ** Module Config
@@ -34,23 +35,45 @@ module.exports = {
   axios: {
     baseURL: 'http://localhost:8888',
     proxy: false,
-    retry: {
-      retries: 4, // 최대 재전송 횟수 4회
-      shouldResetTimeout: true, // 재전송 간 타임아웃을 리셋하기
-      retryDelay: (retry) => {
-        return retry * 100; // 재전송 횟수 * 0.1초만큼 재전송 시작 시간을 지연시키기
-      },
-      retryCondition: (error) => err.response.status === 429, // 서버 혼잡이 일어났을 경우에만 재전송하기
-    },
-    progress: false, // 로딩 바를 사용하지 않음
+    // retry: {
+    //   retries: 4, // 최대 재전송 횟수 4회
+    //   shouldResetTimeout: true, // 재전송 간 타임아웃을 리셋하기
+    //   retryDelay: (retry) => {
+    //     return retry * 100; // 재전송 횟수 * 0.1초만큼 재전송 시작 시간을 지연시키기
+    //   },
+    //   retryCondition: (error) => err.response.status === 429, // 서버 혼잡이 일어났을 경우에만 재전송하기
+    // },
+    //progress: true, // 로딩 바를 사용하지 않음 false
   },
   proxy : {
-    '/sample/api' : 'http://localhost:8888'
+    '/sample/api' : {
+      target: 'http://localhost:8888',
+      changeOrigin: true,
+      secure: false,
+      pathRewrite: {
+        '^/api/': '/'
+      }
+
+    }
   },
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  // loading: {
+  //   color: 'DodgerBlue',
+  //   height: '10px',
+  //   continuous: true,
+  //   duration: 3000
+  // },
+
+  /*
+   ** Activate components - https://nuxtjs.org/docs/2.x/directory-structure/components#components-module
+   */
+  components: true,
+  /*
+   ** importing a custom loader. this will overwrite the default loader
+   */
+  loading: '~/components/LoadingBar.vue',
   /*
   ** Build configuration
   */

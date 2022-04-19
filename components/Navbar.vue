@@ -5,8 +5,8 @@
     </span>
     <div class="navbar-drawer" :class="{ isOpen: open }">
       <nuxt-link
-        v-for="link of links"
-        :key="link.name"
+        v-for="(link, index) of links"
+        :key="index"
         :to="link.to"
         exact
         v-text="link.name"
@@ -38,6 +38,8 @@ export default {
         { to: '/ejd/axios/sample-get', name: 'AXIOS GET Example' },
         { to: '/ejd/axios/sample-post', name: 'AXIOS POST Example' },
         { to: '/ejd/axios/sample-exception', name: 'AXIOS Exception Example' },
+        { to: '/ejd/loading/loading', name: 'loading Example' },
+        { to: '/ejd/loading/loading-ssr', name: 'loading SSR Example' },
       ]
     }
   },
@@ -48,8 +50,6 @@ export default {
   }
 }
 </script>
-
-
 <style scoped>
 .navbar {
   position: relative;
