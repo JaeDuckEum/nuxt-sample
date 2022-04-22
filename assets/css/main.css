@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+
+.loginRegisterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loginRegisterFormBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 1px 1px 30px #e4e4e4;
+  padding: 60px;
+}
+
+.loginRegisterInput {
+  width: 350px !important;
+  font-family: var(--textFont) !important;
+  font-weight: 700 !important;
+  padding-left: 0 !important;
+  border: none !important;
+  border-bottom: var(--underlineBorder) !important;
+  border-radius: 0 !important;
+  color: var(--textFontColor);
+}
