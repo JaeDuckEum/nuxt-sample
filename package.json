@@ -24,6 +24,7 @@
     "js-cookie": "^3.0.1",
     "nuxt": "^1.0.0",
     "vue-notifications": "^0.9.0",
+    "vue-tree-list": "^1.5.0",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {

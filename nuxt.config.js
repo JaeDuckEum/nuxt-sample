@@ -25,6 +25,7 @@ module.exports = {
     { src : '~/plugins/vue-notifications' },
     { src : '~/plugins/persistedState.js' },
     { src : '~/plugins/axios.js' },
+    {src:'@/plugins/vue-tree-list', ssr:false}
   ],
   /*
   ** Module Config
@@ -54,7 +55,7 @@ module.exports = {
         '^/api/': '/'
       }
 
-    }
+    },
   },
   /*
   ** Customize the progress bar color
