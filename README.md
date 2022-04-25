@@ -8,13 +8,13 @@ A static version of the site (made using `nuxt generate`) is hosted [here](https
 
 Why not clone this repo and try it out yourself?
 
-``` bash
+```bash
 git clone https://github.com/BenShelton/nuxt-example.git
 ```
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install # Or 'yarn'
 

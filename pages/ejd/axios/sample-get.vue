@@ -9,25 +9,21 @@
 export default {
   data() {
     return {
-      data : null,
+      data: null,
     }
   },
   mounted() {
-    console.log('mounted is start')
-
     this.getMessage()
-    console.log('mounted is end')
   },
   methods: {
     async getMessage() {
       console.log('getMessage is start')
       const res = await this.$axios.$get('/sample/api/message')
-        .catch(e => {
+        .catch((e) => {
           console.log('e : ', e)
         })
       this.data = res.data
-      console.log('getMessage is end : ', res)
-    }
-  }
+    },
+  },
 }
 </script>

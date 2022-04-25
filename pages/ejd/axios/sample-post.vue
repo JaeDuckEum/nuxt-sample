@@ -3,9 +3,7 @@
     <p>Axios Post sample</p>
     <p>Board List</p>
     <ul>
-      <li
-        v-for="board in boardList" :key="board.boardSeq"
-      >
+      <li v-for="board in boardList" :key="board.boardSeq">
         <p>boardSeq : {{ board.boardSeq }}</p>
         <p>제목 : {{ board.title }}</p>
         <p>내용 : {{ board.cntnts }}</p>
@@ -19,31 +17,26 @@
 export default {
   data() {
     return {
-      boardList : null,
+      boardList: null,
     }
   },
   mounted() {
-    console.log('mounted is start')
     this.getBoardList()
-    console.log('mounted is end')
   },
   methods: {
     async getBoardList() {
-      console.log('getBoardList is start')
-      let params = {};
-      //params.searchDeleteYn = 'N'
-      await this.$axios.$post('/sample/api/board/list', params)
-        .then(res => {
-          console.log('res : ', res)
-          let result, errorMessage, data
-          data = res.data
+      const params = {}
+      // params.searchDeleteYn = 'N'
+      await this.$axios
+        .$post('/sample/api/board/list', params)
+        .then((res) => {
+          const data = res.data
           this.boardList = data
         })
-        .catch(e => {
+        .catch((e) => {
           console.log('e : ', e)
         })
-      console.log('this.boardList : ', this.boardList)
-    }
-  }
+    },
+  },
 }
 </script>
