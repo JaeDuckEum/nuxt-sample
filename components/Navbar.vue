@@ -1,8 +1,6 @@
 <template>
   <div class="navbar">
-    <span @click="open = !open">
-      {{ open ? 'Close' : 'View' }} Links
-    </span>
+    <span @click="open = !open"> {{ open ? 'Close' : 'View' }} Links </span>
     <div class="navbar-drawer" :class="{ isOpen: open }">
       <nuxt-link
         v-for="(link, index) of links"
@@ -17,7 +15,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       open: false,
       links: [
@@ -28,7 +26,10 @@ export default {
         { to: '/about/ben-jones', name: 'Nested About' },
         { to: '/products/edit/64', name: 'Edit Product By Route Param' },
         { to: '/categories/2/products/3', name: 'Complex Route' },
-        { to: '/categories/2/products/someproduct', name: 'Invalid Route Param' },
+        // {
+        //   to: '/categories/2/products/someproduct',
+        //   name: 'Invalid Route Param',
+        // },
         { to: '/products/view', name: 'Vuex Store Example' },
         { to: '/admin', name: 'Admin Layout' },
         { to: '/plugin', name: 'Vue-Notifications Plugin' },
@@ -40,14 +41,15 @@ export default {
         { to: '/ejd/axios/sample-exception', name: 'AXIOS Exception Example' },
         { to: '/ejd/loading/loading', name: 'loading Example' },
         { to: '/ejd/loading/loading-ssr', name: 'loading SSR Example' },
-      ]
+        { to: '/ejd/seo/seo-sample', name: 'SEO Example' },
+      ],
     }
   },
   watch: {
-    '$route.name' () {
+    '$route.name'() {
       this.open = false
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped>
@@ -72,19 +74,21 @@ export default {
 .isOpen {
   left: 0;
 }
-span, a {
+span,
+a {
   padding: 10px;
   color: white;
   cursor: pointer;
   text-decoration: none;
 }
-span:hover, a:hover {
+span:hover,
+a:hover {
   background: white;
   color: #333333;
 }
 a.nuxt-link-active {
   cursor: default;
-  background: #41B883;
+  background: #41b883;
   color: #333333;
 }
 </style>

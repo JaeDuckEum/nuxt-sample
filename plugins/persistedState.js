@@ -1,29 +1,31 @@
 import createPersistedState from 'vuex-persistedstate'
-import * as Cookies from "js-cookie";
-import cookie from "cookie";
-
+import * as Cookies from 'js-cookie'
+import cookie from 'cookie'
 
 export default ({ store, req }) => {
   createPersistedState({
-    //paths: ["example"], // 주석 해제하면 작동안함.
-    storage: { getItem: (key) => {
-      // See https://nuxtjs.org/guide/plugins/#using-process-flags
-      if (process.server) {
-        let headerCookie = req.headers.cookie;
-        if (typeof headerCookie !== 'string') {
-          headerCookie = '';
-        }
-        console.log(' headerCookie :  ', headerCookie);
-        const parsedCookies = cookie.parse(headerCookie);
+    // paths: ["example"], // 주석 해제하면 작동안함.
+    storage: {
+      getItem: (key) => {
+        // See https://nuxtjs.org/guide/plugins/#using-process-flags
+        console.log('req : ', req)
+        if (process.server && req && req.headers && req.headers.cookie) {
+          let headerCookie = req.headers.cookie
+          if (typeof headerCookie !== 'string') {
+            headerCookie = ''
+          }
+          console.log(' headerCookie :  ', headerCookie)
+          const parsedCookies = cookie.parse(headerCookie)
 
-        return parsedCookies[key];
-      } else {
-        return Cookies.get(key);
-      }
+          return parsedCookies[key]
+        } else {
+          return Cookies.get(key)
+        }
+      },
+      // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
+      setItem: (key, value) =>
+        Cookies.set(key, value, { expires: 365, secure: false }),
+      removeItem: (key) => Cookies.remove(key),
     },
-    // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
-    setItem: (key, value) =>
-      Cookies.set(key, value, { expires: 365, secure: false }),
-    removeItem: (key) => Cookies.remove(key) }
   })(store)
 }

@@ -1,18 +1,35 @@
 export const state = () => ({
-  list: []
+  todos: [],
 })
 
+export const getters = {
+  // todos(state) {
+  //   return state.list
+  // }
+  getTodos: state => state.todos
+}
+
 export const mutations = {
-  add(state, text) {
-    state.list.push({
+  ADD_TODO(state, text) {
+    state.todos.push({
       text,
-      done: false
+      done: false,
     })
   },
-  remove(state, {todo}) {
-    state.list.splice(state.list.indexOf(todo), 1)
+  REMOVE_TODO(state, { todo }) {
+    state.todos.splice(state.todos.indexOf(todo), 1)
   },
-  toggle(state, todo) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  SET_TODO(state, todo) {
+    console.log('state : ', state)
+    console.log('todo : ', todo.done)
+    // todo.done = !todo.done
     todo.done = !todo.done
-  }
+  },
+}
+
+export const actions = {
+  setTodo({ commit }, todo) {
+    commit('SET_TODO', todo)
+  },
 }
