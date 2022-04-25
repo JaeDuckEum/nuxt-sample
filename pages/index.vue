@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 <template>
   <section class="container">
     <div>
@@ -34,9 +35,17 @@ export default {
     return {
       serverMode,
       nodeEnv,
-      serverPort
+      serverPort,
     }
-  }
+  },
+  data() {
+    return {
+      color: null,
+    }
+  },
+  mounted() {
+    let bar
+  },
 }
 </script>
 
