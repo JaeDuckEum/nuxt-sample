@@ -12,6 +12,11 @@ module.exports = {
   plugins: [],
   // add your custom rules here
   rules: {
+    // semi: ['error', 'always'],
+    semi: 2,
+    // quotes: ["warn', 'double'],
+    // 'no-unused-vars': 'warn',
+    'no-unused-vars': 'error',
     'vue/multi-word-component-names': 'off',
     // 'vue/multi-word-component-names': [
     //   'error',
@@ -22,7 +27,7 @@ module.exports = {
 
     'vue/order-in-components': 'off',
     'vue/component-definition-name-casing': 'off',
-    'no-unused-vars': 'off',
+
     '@typescript-eslint/no-unused-vars': 'off',
     'no-console': 'off',
     // 'no-restricted-syntax': [

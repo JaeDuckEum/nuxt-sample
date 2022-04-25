@@ -1,4 +1,4 @@
 {
-  "semi": false,
-  "singleQuote": true
+  "semi": false, // 세미콜론 사용
+  "singleQuote": true, // 따옴표는 모두 '' 로 사용
 }
