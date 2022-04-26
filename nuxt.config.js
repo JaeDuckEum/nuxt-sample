@@ -1,4 +1,5 @@
 export default {
+  // mode: 'spa',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-atflee',
@@ -21,7 +22,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {
-      src: '~/plugins/vueExcelViewer',
+      src: '~/plugins/vueEasyTable',
       ssr: false,
     },
   ],
