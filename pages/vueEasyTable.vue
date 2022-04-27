@@ -16,7 +16,6 @@
 
 <script>
 import { read, utils } from 'xlsx'
-let i = 0
 export default {
   data() {
     return {
@@ -91,6 +90,7 @@ export default {
         for (let i = 0; i < 6; i++) {
           this.tableData.push(rowObj[i])
         }
+        let i = 0
         this.columns = []
         for (const key in this.tableData[0]) {
           this.columns.push({
@@ -115,5 +115,5 @@ export default {
 }
 </script>
 
-<style >
+<style>
 </style>
