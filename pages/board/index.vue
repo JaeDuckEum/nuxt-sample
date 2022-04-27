@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { getContents } from '@/api'
+import { getContents, getUserInfo } from '@/api'
 export default {
   async asyncData() {
     console.log('asyncData')
@@ -35,10 +35,18 @@ export default {
     }
   },
   methods: {
-    createContent() {
-      this.$router.push({
-        path: '/create',
-      })
+    async createContent() {
+      const res = await getUserInfo()
+      if (res.data.isSuccess) {
+        this.$router.push({
+          path: '/create',
+        })
+      } else {
+        alert('로그인 후 이용해주세요')
+        this.$router.push({
+          path: '/login',
+        })
+      }
     },
     goBoardDetail(item, index, e) {
       this.$router.push({

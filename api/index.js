@@ -1,6 +1,20 @@
 import axios from 'axios'
+import { getJwt } from '~/util/SessionManager'
 
 const API_ADDR = 'http://localhost:9000'
+
+const headers = () => {
+  const jwt = getJwt()
+  return {
+    accept: 'application/json',
+    'Content-Type': 'application/json',
+    'X-Access-Token': jwt,
+  }
+}
+
+export const getUserInfo = () => {
+  return axios.get(`${API_ADDR}/user/info`, { headers: headers() })
+}
 
 // 컨텐츠 전체조회
 export const getContents = () => {
@@ -21,10 +35,13 @@ export const getContent = ({ contentId }) => {
 // }
 
 // 컨텐츠 추가
-export const createContent = ({ userId, title, content }) => {
-  return axios.post(`${API_ADDR}/contents`, {
-    userId,
-    title,
-    content,
-  })
+export const createContent = ({ title, content }) => {
+  return axios.post(
+    `${API_ADDR}/contents`,
+    {
+      title,
+      content,
+    },
+    { headers: headers() }
+  )
 }

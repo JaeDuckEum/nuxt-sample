@@ -25,7 +25,7 @@ import { TempAdminApi, EndPoint, HttpMethod } from '~/util/TempAdminApi'
 
 import { sessionSet } from '~/util/expirySession'
 export default {
-  layout: 'login',
+  // layout: 'login',
   data() {
     return {
       username: '',
@@ -56,7 +56,7 @@ export default {
             password: this.password,
           },
           method: HttpMethod.POST,
-          url: EndPoint.POST_ADMIN_LOGIN,
+          url: EndPoint.POST_USER_LOGIN,
         })
 
         if (!res?.isSuccess || isEmpty(res?.result?.token)) {
@@ -66,6 +66,13 @@ export default {
 
         sessionSet('isLogined', true)
         sessionSet('jwt', res.result.token)
+
+        this.$store.commit('setLoginUser', {
+          id: res.result.userId,
+          nickname: res.result.nickname,
+          isLogin: true,
+        })
+
         alert('로그인 성공')
         this.$router.push({
           path: '/',

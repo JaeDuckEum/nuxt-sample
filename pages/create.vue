@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { createContent } from '@/api'
+import { createContent, getUserInfo } from '@/api'
 import CKEditor4 from '~/components/CKEditor4.vue'
 // import CKEditor5 from '~/components/CKEditor5.vue'
 
@@ -19,25 +19,31 @@ export default {
     CKEditor4,
     // CKEditor5,
   },
-  // components: { CKEditor },
   data() {
     return {
       title: '',
       content: '',
     }
   },
+  async created() {
+    const res = await getUserInfo()
+    if (res.data.isSuccess) {
+      this.$router.push({
+        path: '/create',
+      })
+    } else {
+      alert('로그인 후 이용해주세요')
+      this.$router.push({
+        path: '/login',
+      })
+    }
+  },
   methods: {
     async register() {
       await createContent({
-        userId: 2,
         title: this.title,
         content: this.content,
       })
-      // .then(
-      //   this.$router.push({
-      //     path: '/board',
-      //   })
-      // )
       this.$router.push({
         path: '/board',
       })
