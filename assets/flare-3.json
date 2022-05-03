@@ -1,0 +1,45 @@
+{
+  "name": "analytics",
+  "children": [
+    {
+      "name": "cluster",
+      "children": [
+        { "name": "AgglomerativeCluster", "value": 3938 },
+        { "name": "CommunityStructure", "value": 3812 }
+      ]
+    },
+    {
+      "name": "graph",
+      "children": [
+        { "name": "BetweennessCentrality", "value": 3534 },
+        {
+          "name": "LinkDistance",
+          "children": [
+            { "name": "BetweennessCentrality", "value": 3534 },
+            {
+              "name": "LinkDistance",
+              "children": [
+                { "name": "BetweennessCentrality", "value": 3534 },
+                {
+                  "name": "LinkDistance",
+                  "children": [
+                    { "name": "BetweennessCentrality", "value": 3534 },
+                    { "name": "LinkDistance", "value": 5731 },
+                    { "name": "MaxFlowMinCut", "value": 7840 }
+                  ]
+                },
+                { "name": "MaxFlowMinCut", "value": 7840 }
+              ]
+            },
+            { "name": "MaxFlowMinCut", "value": 7840 }
+          ]
+        },
+        { "name": "MaxFlowMinCut", "value": 7840 }
+      ]
+    },
+    {
+      "name": "optimization",
+      "children": [{ "name": "AspectRatioBanker", "value": 7074 }]
+    }
+  ]
+}
